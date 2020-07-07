@@ -46,6 +46,13 @@ Ext.define('Traccar.view.map.BaseMap', {
                     })
                 });
                 break;
+            case 'customArcgis':
+                layer = new ol.layer.Tile({
+                    source: new ol.source.TileArcGISRest({
+                        url: Ext.String.htmlDecode(server.get('mapUrl'))
+                    })
+                });
+                break;
             case 'bingRoad':
                 layer = new ol.layer.Tile({
                     source: new ol.source.BingMaps({
@@ -130,16 +137,16 @@ Ext.define('Traccar.view.map.BaseMap', {
                     })
                 });
                 break;
-            case 'osm':
-                layer = new ol.layer.Tile({
-                    source: new ol.source.OSM({})
-                });
-                break;
-            default:
+            case 'wikimedia':
                 layer = new ol.layer.Tile({
                     source: new ol.source.OSM({
                         url: 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png'
                     })
+                });
+                break;
+            default:
+                layer = new ol.layer.Tile({
+                    source: new ol.source.OSM({})
                 });
                 break;
         }
